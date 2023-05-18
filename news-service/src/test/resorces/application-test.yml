@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:news-test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    hikari:
+      idle-timeout: 10000
+
+  news-service:
+    service:
+      url: http://localhost:9001

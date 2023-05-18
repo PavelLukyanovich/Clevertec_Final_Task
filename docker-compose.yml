@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  news-service-db:
+    image: postgres:latest
+    container_name: news-service-db
+    environment:
+      POSTGRES_DB: "news"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "admin"
+    ports:
+      - "5432:5432"
+
+  news-service:
+    build:
+      dockerfile: Dockerfile
+      context: ./news-service
+    container_name: news-service
+    environment:
+      DB_URL: "jdbc:postgresql://news-service-db:5432/news"
+      DB_USER: "postgres"
+      DB_PASS: "admin"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - news-service-db
+
+  user-service-db:
+    image: postgres:latest
+    container_name: user-service-db
+    environment:
+      POSTGRES_DB: "users"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "admin"
+    ports:
+      - "5400:5432"
+
+  user-service:
+    build:
+      dockerfile: Dockerfile
+      context: ./user-service
+    container_name: user-service
+    environment:
+      DB_URL: "jdbc:postgresql://client-service-db:5432/users"
+      DB_USER: "postgres"
+      DB_PASS: "admin"
+    ports:
+        - "8085:8085"
+    depends_on:
+      - user-service-db
+
+networks:
+  web:
+    name: web

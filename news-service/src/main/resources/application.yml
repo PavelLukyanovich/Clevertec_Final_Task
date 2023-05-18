@@ -1,0 +1,45 @@
+spring:
+  liquibase:
+    enabled: true
+    dropFirst: true
+    changeLog: classpath:/db/changelog/db-changelog-master.yml
+    parameters:
+      spring.datasource.driver-class-name: ${org.postgresql.Driver}
+      spring.datasource.url: ${DB_URL:jdbc:postgresql://localhost:5432/news}
+      spring.datasource.username: ${postgres}
+      spring.datasource.password: ${admin}
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/news}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:admin}
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        search:
+          backend:
+            type: lucene
+            directory.root: ./data/index
+
+feign.httpclient.enabled: true
+
+ribbon:
+  listOfServers: http://localhost:8080
+
+eureka:
+  instance:
+    appname: news-service
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 8080
+
+cache:
+
+security:
+  jwt:
+    secret: asdkflajslfaieonver
+    access: 3600000
