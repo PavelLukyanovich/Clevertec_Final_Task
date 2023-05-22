@@ -20,6 +20,6 @@ public class RegisterUserRequest {
 
         this.password = new BCryptPasswordEncoder().encode(password);
 
-    } // TODO: 12.05.2023 moov to @ 
+    }
 
 }

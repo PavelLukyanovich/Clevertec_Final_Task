@@ -38,6 +38,13 @@ server:
   port: 8080
 
 cache:
+  type: redis
+    redis:
+      time-to-live: 300s
+      key-prefix: news-cache
+      use-key-prefix: true
+      cache-null-values: true
+      enable-transaction-support: true
 
 security:
   jwt:

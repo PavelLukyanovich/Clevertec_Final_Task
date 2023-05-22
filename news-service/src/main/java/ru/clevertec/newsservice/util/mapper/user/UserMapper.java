@@ -12,7 +12,6 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-  //  @Mapping(target = "authorities", ignore = true)
     User requestToUser(RegisterUserRequest request);
 
     User userDtoToUser(RegisterUserRequest request);

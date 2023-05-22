@@ -21,7 +21,6 @@ import ru.clevertec.newsservice.util.mapper.user.UserMapper;
 @RequestMapping("/api/v1/authentication")
 @RequiredArgsConstructor
 @Validated
-//@Profile("dev")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
